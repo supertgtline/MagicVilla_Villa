@@ -14,11 +14,12 @@ namespace MagicVilla_VillaAPI.Controllers
         {
             return Ok(VillaStore.villaList);
         }
+
         // When user input id here so the GetVilla will be required id
-        [HttpGet("{id:int}",Name = "GetVilla")]
+        [HttpGet("{id:int}", Name = "GetVilla")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)] 
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         /*[ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]*/
@@ -34,19 +35,26 @@ namespace MagicVilla_VillaAPI.Controllers
             {
                 return NotFound();
             }
-            return  Ok(villa);
+
+            return Ok(villa);
         }
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)] 
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<VillaDTO> CreateVilla([FromBody] VillaDTO villaDto)
         {
-            if (!ModelState.IsValid)
+            /*if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
+            }*/
+            if (VillaStore.villaList.FirstOrDefault(u => u.Name.ToLower() == villaDto.Name.ToLower()) != null)
+            {
+                ModelState.AddModelError("CustomError","Villa already Exists");
+                return BadRequest(ModelState);
             }
+
             if (villaDto == null)
             {
                 return BadRequest(villaDto);
@@ -56,9 +64,10 @@ namespace MagicVilla_VillaAPI.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
+
             villaDto.Id = VillaStore.villaList.OrderByDescending(u => u.Id).FirstOrDefault().Id + 1;
             VillaStore.villaList.Add(villaDto);
-            return CreatedAtAction("GetVilla",new {id = villaDto.Id},villaDto);
+            return CreatedAtAction("GetVilla", new { id = villaDto.Id }, villaDto);
         }
     }
 }
