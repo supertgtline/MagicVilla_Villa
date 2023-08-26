@@ -14,5 +14,11 @@ namespace MagicVilla_VillaAPI.Controllers
         {
             return VillaStore.villaList;
         }
+        // When user input id here so the GetVilla will be required id
+        [HttpGet("{id:int}")]
+        public VillaDTO GetVilla(int id)
+        {
+            return VillaStore.villaList.First(u => u.Id == id);
+        }
     }
 }
