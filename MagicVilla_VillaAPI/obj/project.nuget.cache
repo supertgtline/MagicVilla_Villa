@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "IeiHbY7L0MjkLfud0BW26may1njQ7HEBG1GUaPCYXQTTntyTXBMLR1MyTMml/oV2SQ9Zgv7FMslyyVtdMMFqrQ==",
+  "success": true,
+  "projectFilePath": "/Users/giangthao/Desktop/WorkSpace/C#/API Course - FPT udemy/self_learn/MagicVilla/MagicVilla_VillaAPI/MagicVilla_VillaAPI.csproj",
+  "expectedPackageFiles": [
+    "/Users/giangthao/.nuget/packages/microsoft.aspnetcore.openapi/7.0.10/microsoft.aspnetcore.openapi.7.0.10.nupkg.sha512",
+    "/Users/giangthao/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "/Users/giangthao/.nuget/packages/microsoft.openapi/1.4.3/microsoft.openapi.1.4.3.nupkg.sha512",
+    "/Users/giangthao/.nuget/packages/swashbuckle.aspnetcore/6.5.0/swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "/Users/giangthao/.nuget/packages/swashbuckle.aspnetcore.swagger/6.5.0/swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "/Users/giangthao/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.5.0/swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "/Users/giangthao/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.5.0/swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
