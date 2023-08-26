@@ -15,7 +15,7 @@ namespace MagicVilla_VillaAPI.Controllers
             return Ok(VillaStore.villaList);
         }
         // When user input id here so the GetVilla will be required id
-        [HttpGet("{id:int}")]
+        [HttpGet("{id:int}",Name = "GetVilla")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)] 
@@ -38,7 +38,7 @@ namespace MagicVilla_VillaAPI.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)] 
         public ActionResult<VillaDTO> CreateVilla([FromBody] VillaDTO villaDto)
@@ -54,7 +54,7 @@ namespace MagicVilla_VillaAPI.Controllers
             }
             villaDto.Id = VillaStore.villaList.OrderByDescending(u => u.Id).FirstOrDefault().Id + 1;
             VillaStore.villaList.Add(villaDto);
-            return Ok(villaDto);
+            return CreatedAtAction("GetVilla",new {id = villaDto.Id},villaDto);
         }
     }
 }
