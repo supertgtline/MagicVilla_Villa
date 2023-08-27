@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "NCxPbKKeib1ZL22cF+bAC7DmFRvt+sFIJWcvPGh5zaiAQAFZL/ambztxUMuaInWCgIsgcys7kjidAXfVML9Erg==",
+  "dgSpecHash": "QqbedrNKuqJVhdF6wTR2wwlXvTRhHgfd3s43oN9YnH/jzzHlqvixftVcszsl5uqDoq7Q3aeHg2uN++p7SgtVhA==",
   "success": true,
   "projectFilePath": "/Users/giangthao/Desktop/WorkSpace/C#/API Course - FPT udemy/self_learn/MagicVilla/MagicVilla_VillaAPI/MagicVilla_VillaAPI.csproj",
   "expectedPackageFiles": [
+    "/Users/giangthao/.nuget/packages/automapper/12.0.1/automapper.12.0.1.nupkg.sha512",
+    "/Users/giangthao/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/12.0.1/automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "/Users/giangthao/.nuget/packages/azure.core/1.24.0/azure.core.1.24.0.nupkg.sha512",
     "/Users/giangthao/.nuget/packages/azure.identity/1.6.0/azure.identity.1.6.0.nupkg.sha512",
     "/Users/giangthao/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
