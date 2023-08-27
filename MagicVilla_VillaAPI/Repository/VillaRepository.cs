@@ -2,6 +2,7 @@ using System.Linq.Expressions;
 using MagicVilla_VillaAPI.Data;
 using MagicVilla_VillaAPI.Models;
 using MagicVilla_VillaAPI.Repository.IRepository;
+using Microsoft.EntityFrameworkCore;
 
 namespace MagicVilla_VillaAPI.Repository
 {
@@ -13,29 +14,48 @@ namespace MagicVilla_VillaAPI.Repository
         {
             db = _db;
         }
-        public Task<List<Villa>> GetAll(Expression<Func<Villa>> filter = null)
+        public async Task<List<Villa>> GetAll(Expression<Func<Villa,bool>> filter = null)
         {
-            throw new NotImplementedException();
+            IQueryable<Villa> queryable = _db.Villas;
+            if ((filter !=null))
+            {
+                queryable = queryable.Where(filter);
+            }
+
+            return await queryable.ToListAsync();
         }
 
-        public Task<Villa> Get(Expression<Func<Villa>> filter = null, bool tracked = true)
+        public async Task<Villa> Get(Expression<Func<Villa,bool>> filter = null, bool tracked = true)
         {
-            throw new NotImplementedException();
+            IQueryable<Villa> queryable = _db.Villas;
+            if (!tracked)
+            {
+                queryable = queryable.AsNoTracking();
+            }
+
+            if (filter != null)
+            {
+                queryable = queryable.Where(filter);
+            }
+
+            return await queryable.FirstOrDefaultAsync();
         }
 
         public async Task Create(Villa entity)
         {
             await _db.Villas.AddAsync(entity);
+            await Save();
         }
 
-        public Task Remove(Villa entity)
-        {
-            throw new NotImplementedException();
+        public async Task Remove(Villa entity)
+        { 
+            _db.Villas.Remove(entity);
+            await Save();
         }
 
-        public Task Save()
+        public async Task Save()
         {
-            throw new NotImplementedException();
+            await _db.SaveChangesAsync();
         }
     }
 }
