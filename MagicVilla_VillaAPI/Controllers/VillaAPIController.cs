@@ -150,7 +150,7 @@ namespace MagicVilla_VillaAPI.Controllers
                 Rate = villaDto.Rate,
                 Sqft = villaDto.Sqft
             };*/
-            await _dbVilla.UpadateAsync(model);
+            await _dbVilla.UpdateAsync(model);
             return NoContent();
         }
 
@@ -194,7 +194,7 @@ namespace MagicVilla_VillaAPI.Controllers
                 Rate = villaDto.Rate,
                 Sqft = villaDto.Sqft
             };*/
-            await _dbVilla.UpadateAsync(model);
+            await _dbVilla.UpdateAsync(model);
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
