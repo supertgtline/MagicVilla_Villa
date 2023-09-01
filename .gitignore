@@ -24,3 +24,12 @@ MagicVilla_VillaAPI/obj/MagicVilla_VillaAPI.csproj.EntityFrameworkCore.targets
 MagicVilla_VillaAPI/obj/rider.project.model.nuget.info
 MagicVilla_VillaAPI/obj/Debug/net7.0/apphost
 MagicVilla_VillaAPI/log/villaLogs20230826.txt
+MagicVilla_Utility/obj/rider.project.restore.info
+MagicVilla_VillaAPI/obj/rider.project.restore.info
+MagicVilla_Web/obj/Debug/net7.0/MagicVilla_Web.assets.cache
+MagicVilla_Web/obj/Debug/net7.0/MagicVilla_Web.csproj.AssemblyReference.cache
+MagicVilla_Web/obj/project.assets.json
+MagicVilla_Web/obj/project.nuget.cache
+MagicVilla_Web/obj/project.packagespec.json
+MagicVilla_Web/obj/rider.project.restore.info
+*.cache

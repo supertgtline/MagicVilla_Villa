@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "N6iGynobOp84bxB3D6ETP8+xAH/Yn6N++IprTveqbJNKKQ2iiOaRkK0gc9oS9dQxH2bqtqUi6Ay0MeJ44wrSyg==",
+  "dgSpecHash": "OkXbPAPgX1CkxtmR6CvHhzeYkJNxxBwRW0MvkeZuwXI7M3YldVDmKX6XeEf+3oQn4uwVxzhVCGWclWTjyIY0oA==",
   "success": true,
   "projectFilePath": "/Users/giangthao/Desktop/WorkSpace/C#/API Course - FPT udemy/self_learn/MagicVilla/MagicVilla_Web/MagicVilla_Web.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,7 @@
     "/Users/giangthao/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/6.0.0/microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
     "/Users/giangthao/.nuget/packages/microsoft.extensions.options/6.0.0/microsoft.extensions.options.6.0.0.nupkg.sha512",
     "/Users/giangthao/.nuget/packages/microsoft.extensions.primitives/6.0.0/microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "/Users/giangthao/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
     "/Users/giangthao/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
   ],
   "logs": []
