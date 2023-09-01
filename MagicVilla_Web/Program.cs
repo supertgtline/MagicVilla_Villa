@@ -1,8 +1,13 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using MagicVilla_Web;
+
+var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 
+// Add Services to the container.
+builder.Services.AddControllersWithViews();
+builder.Services.AddAutoMapper(typeof(MappingConfig));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
