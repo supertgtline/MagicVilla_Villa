@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net7.0": {}
+    "net7.0": {
+      "MagicVilla_Utility/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/MagicVilla_Utility.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MagicVilla_Utility.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "MagicVilla_Utility/1.0.0": {
+      "type": "project",
+      "path": "../MagicVilla_Utility/MagicVilla_Utility.csproj",
+      "msbuildProject": "../MagicVilla_Utility/MagicVilla_Utility.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net7.0": []
+    "net7.0": [
+      "MagicVilla_Utility >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "/Users/giangthao/.nuget/packages/": {}
@@ -32,7 +51,11 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/Users/giangthao/Desktop/WorkSpace/C#/API Course - FPT udemy/self_learn/MagicVilla/MagicVilla_Utility/MagicVilla_Utility.csproj": {
+              "projectPath": "/Users/giangthao/Desktop/WorkSpace/C#/API Course - FPT udemy/self_learn/MagicVilla/MagicVilla_Utility/MagicVilla_Utility.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
