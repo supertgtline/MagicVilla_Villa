@@ -15,14 +15,14 @@ public class BaseService : IBaseService
     public BaseService(IHttpClientFactory httpClientFactory)
     {
         this.responseModel = new();
-        HttpClientFactory = httpClientFactory;
+        this.HttpClientFactory = httpClientFactory;
     }
 
     public async Task<T> SendAsync<T>(APIRequest apiRequest)
     {
         try
         {
-            var client = HttpClientFactory.CreateClient("MagicAPI");
+            var client = HttpClientFactory.CreateClient("MagicVilla_VillaAPI");
             HttpRequestMessage message = new HttpRequestMessage();
             message.Headers.Add("Accept", "application/json");
             message.RequestUri = new Uri(apiRequest.Url);
