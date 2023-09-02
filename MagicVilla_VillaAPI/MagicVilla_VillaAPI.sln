@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagicVilla_VillaAPI", "Magi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagicVilla_Web", "..\MagicVilla_Web\MagicVilla_Web.csproj", "{D43D65BF-337D-4205-8985-19357E86BE57}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Magic_Web", "..\Magic_Web\Magic_Web.csproj", "{2A160236-62A6-4837-AEEE-CED24AC77F1E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{D43D65BF-337D-4205-8985-19357E86BE57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D43D65BF-337D-4205-8985-19357E86BE57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D43D65BF-337D-4205-8985-19357E86BE57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A160236-62A6-4837-AEEE-CED24AC77F1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A160236-62A6-4837-AEEE-CED24AC77F1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A160236-62A6-4837-AEEE-CED24AC77F1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A160236-62A6-4837-AEEE-CED24AC77F1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
