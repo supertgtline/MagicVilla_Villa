@@ -19,7 +19,7 @@ public class VillaController : Controller
     }
     // GET
     [HttpGet]
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> IndexVilla()
     {
         List<VillaDTO> list = new();
         var response = await _villaService.GetAllAsync<APIResponse>();

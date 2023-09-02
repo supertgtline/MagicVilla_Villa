@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "MfuOiRC9KzuOcRoGd5LfxfhhhD8T/0pI/HfjHcDK5j1ZE6v3zuHbTimSCS7WUGlema2lYXigwBwsHPnvh7Xvug==",
+  "dgSpecHash": "GMaghgqKVqc6IxJTRjDgGJwbANTIurm8bbZ1XDdpOBbyA1ccUcfoWF7dlfx8XEYcHQazghZm1M3TXzJuGTHKTQ==",
   "success": true,
   "projectFilePath": "/Users/giangthao/Desktop/WorkSpace/C#/API Course - FPT udemy/self_learn/MagicVilla/MagicVilla_Utility/MagicVilla_Utility.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/Users/giangthao/.nuget/packages/automapper/12.0.1/automapper.12.0.1.nupkg.sha512",
+    "/Users/giangthao/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512"
+  ],
   "logs": []
 }

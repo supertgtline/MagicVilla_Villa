@@ -1,0 +1,1 @@
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="MagicVilla_Web_Rider.MvcApplication" Language="C#" %>
