@@ -35,11 +35,11 @@ namespace MagicVilla_VillaAPI.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<APIResponse>> GetVillas()
+        public async Task<ActionResult<APIResponse>> GetVillaNumbers()
         {
             try
             {
-                IEnumerable<VillaNumber> villasNumberList = await _dbVillaNumbber.GetAllAsync();
+                IEnumerable<VillaNumber> villasNumberList = await _dbVillaNumbber.GetAllAsync(includeProperties:"Villa");
                 _response.Result = _mapper.Map<List<VillaNumberDTO>>(villasNumberList);
                 _response.StatusCode = HttpStatusCode.OK;
                 return Ok(_response);
