@@ -29,7 +29,7 @@ public class VillaService : BaseService,IVillaService
         return SendAsync<T>(new APIRequest()
         {
             ApiType = SD.ApiType.GET,
-            Url = villaUrl + "/api/villaAPI"+id
+            Url = villaUrl + "/api/villaAPI/"+id
         });
     }
 
@@ -58,7 +58,7 @@ public class VillaService : BaseService,IVillaService
         return SendAsync<T>(new APIRequest()
         {
             ApiType = SD.ApiType.DELETE,
-            Url = villaUrl + "/api/villaAPI"+id
+            Url = villaUrl + "/api/villaAPI/"+id
         });
     }
 }
