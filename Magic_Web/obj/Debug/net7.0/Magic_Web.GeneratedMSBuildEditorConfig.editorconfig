@@ -60,8 +60,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVmlsbGEvQ3JlYXRlVmlsbGEuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/giangthao/Desktop/WorkSpace/C\#/API Course - FPT udemy/self_learn/MagicVilla/Magic_Web/Views/Villa/DeleteVilla.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVmlsbGEvRGVsZXRlVmlsbGEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/giangthao/Desktop/WorkSpace/C\#/API Course - FPT udemy/self_learn/MagicVilla/Magic_Web/Views/Villa/IndexVilla.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVmlsbGEvSW5kZXhWaWxsYS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/giangthao/Desktop/WorkSpace/C\#/API Course - FPT udemy/self_learn/MagicVilla/Magic_Web/Views/Villa/UpdateVilla.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVmlsbGEvVXBkYXRlVmlsbGEuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/giangthao/Desktop/WorkSpace/C\#/API Course - FPT udemy/self_learn/MagicVilla/Magic_Web/Views/_ViewImports.cshtml]
