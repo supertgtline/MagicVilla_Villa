@@ -1,12 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using Magic_Web.Models;
 using Magic_Web.Models.Dto;
 using Magic_Web.Models.VM;
-using Magic_Web.Services;
 using Magic_Web.Services.IServices;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -67,6 +62,13 @@ namespace Magic_Web.Controllers
                 if (response != null && response.IsSuccess && response.ErrorMessages.Count == 0)
                 {
                     return RedirectToAction(nameof(IndexVillaNumber));
+                }
+                else
+                {
+                    if (response != null && response.ErrorMessages.Count > 0)
+                    {
+                        ModelState.AddModelError("ErrorMessage",response.ErrorMessages.FirstOrDefault());
+                    }
                 }
             }
             return View(model);
