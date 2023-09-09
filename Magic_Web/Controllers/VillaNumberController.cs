@@ -64,7 +64,7 @@ namespace Magic_Web.Controllers
             {
 
                 var response = await _villaNumberService.CreateAsync<APIResponse>(model.VillaNumber);
-                if (response != null && response.IsSuccess)
+                if (response != null && response.IsSuccess && response.ErrorMessages.Count == 0)
                 {
                     return RedirectToAction(nameof(IndexVillaNumber));
                 }

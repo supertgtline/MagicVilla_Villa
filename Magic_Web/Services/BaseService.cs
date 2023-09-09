@@ -1,3 +1,4 @@
+using System.Net;
 using System.Text;
 using Magic_Web.Models;
 using Magic_Web.Services.IServices;
@@ -49,9 +50,27 @@ public class BaseService : IBaseService
             HttpResponseMessage apiResonse = null;
             apiResonse = await client.SendAsync(message);
             var apiContent = await apiResonse.Content.ReadAsStringAsync();
+            try
+            {
+                APIResponse ApiResponse = JsonConvert.DeserializeObject<APIResponse>(apiContent);
+                if (apiResonse.StatusCode == HttpStatusCode.BadRequest
+                    || apiResonse.StatusCode == HttpStatusCode.NotFound)
+                {
+                    ApiResponse.StatusCode = HttpStatusCode.BadRequest;
+                    ApiResponse.IsSuccess = false;
+                    var res = JsonConvert.SerializeObject(ApiResponse);
+                    var returnObj = JsonConvert.DeserializeObject<T>(res);
+                    return returnObj;
+                }
+            }
+            catch (Exception e)
+            {
+                var exceptionResponse = JsonConvert.DeserializeObject<T>(apiContent);
+                return exceptionResponse;
+            }
+
             var APIResponse = JsonConvert.DeserializeObject<T>(apiContent);
             return APIResponse;
-
         }
         catch (Exception e)
         {
