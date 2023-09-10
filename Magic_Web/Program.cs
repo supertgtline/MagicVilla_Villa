@@ -1,3 +1,4 @@
+using AutoMapper;
 using Magic_Web;
 using Magic_Web.Services;
 using Magic_Web.Services.IServices;
@@ -10,9 +11,6 @@ builder.Services.AddHttpClient<IVillaService, VillaService>();
 builder.Services.AddScoped<IVillaService, VillaService>();
 builder.Services.AddHttpClient<IVillaNumberService, VillaNumberService>();
 builder.Services.AddScoped<IVillaNumberService, VillaNumberService>();
-builder.Services.AddHttpClient<IAuthService, AuthService>();
-builder.Services.AddScoped<IAuthService, AuthService>();
-
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
