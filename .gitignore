@@ -32,4 +32,6 @@ MagicVilla_Web/obj/project.assets.json
 MagicVilla_Web/obj/project.nuget.cache
 MagicVilla_Web/obj/project.packagespec.json
 MagicVilla_Web/obj/rider.project.restore.info
+MagicVilla_VillaAPI/obj/*.*
+MagicVilla_Web/obj/*.*
 *.cache
