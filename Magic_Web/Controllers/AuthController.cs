@@ -1,7 +1,9 @@
 using Magic_Web.Models;
 using Magic_Web.Models.Dto;
 using Magic_Web.Services.IServices;
+using MagicVilla_Utility;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace Magic_Web.Controllers
 {
@@ -24,6 +26,13 @@ namespace Magic_Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginRequestDTO obj)
         {
+            APIResponse response = await _authService.LoginAsync<APIResponse>(obj);
+            if (response != null && response.IsSuccess)
+            {
+                LoginResponseDTO model =
+                    JsonConvert.DeserializeObject<LoginResponseDTO>(Convert.ToString(response.Result));
+                HttpContext.Session.SetString(SD.SessionToken,model.Token);
+            }
             return View();
         }
 
