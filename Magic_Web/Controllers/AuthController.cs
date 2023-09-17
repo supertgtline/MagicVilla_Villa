@@ -40,9 +40,15 @@ namespace Magic_Web.Controllers
                 identity.AddClaim(new Claim(ClaimTypes.Role, model.User.Role));
                 var principal = new ClaimsPrincipal(identity);
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-
+                HttpContext.Session.SetString(SD.SessionToken,model.Token);
+                return RedirectToAction("Index","Home");
             }
-            return View();
+            else
+            {
+                ModelState.AddModelError("CustomError",response.ErrorMessages.FirstOrDefault());
+                return View(obj);
+            }
+            
         }
 
         [HttpGet]

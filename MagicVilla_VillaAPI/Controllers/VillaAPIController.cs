@@ -59,7 +59,6 @@ namespace MagicVilla_VillaAPI.Controllers
 
         // When user input id here so the GetVilla will be required id
         [HttpGet("{id:int}", Name = "GetVilla")]
-        [Authorize(Roles = "admin")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

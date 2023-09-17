@@ -1,4 +1,5 @@
 using System.Net;
+using System.Net.Http.Headers;
 using System.Text;
 using Magic_Web.Models;
 using Magic_Web.Services.IServices;
@@ -48,6 +49,10 @@ public class BaseService : IBaseService
             }
 
             HttpResponseMessage apiResonse = null;
+            if (!string.IsNullOrEmpty(apiRequest.Token))
+            {
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiRequest.Token);
+            }
             apiResonse = await client.SendAsync(message);
             var apiContent = await apiResonse.Content.ReadAsStringAsync();
             try

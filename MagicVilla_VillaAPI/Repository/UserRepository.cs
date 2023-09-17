@@ -36,7 +36,7 @@ public class UserRepository : IUserRepository
     {
         var user = _db.LocalUsers.FirstOrDefault
         (u => u.UserName.ToLower() == loginRequestDto.UserName.ToLower()
-              && u.Password == loginRequestDto.Passwrod);
+              && u.Password == loginRequestDto.Password);
         if (user == null)
         {
             return new LoginResponseDTO()

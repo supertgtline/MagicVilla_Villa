@@ -112,10 +112,10 @@ namespace MagicVilla_VillaAPI.Controllers
                     return BadRequest(ModelState);
                 }
 
-                    if (createDto == null)
-                    {
-                        return BadRequest(createDto);
-                    }
+                if (createDto == null)
+                {
+                    return BadRequest(createDto);
+                }
 
                 VillaNumber villa = _mapper.Map<VillaNumber>(createDto);
                 await _dbVillaNumbber.CreateAsync(villa);

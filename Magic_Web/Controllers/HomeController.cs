@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Magic_Web.Models;
 using Magic_Web.Models.Dto;
 using Magic_Web.Services.IServices;
+using MagicVilla_Utility;
 using Newtonsoft.Json;
 
 namespace Magic_Web.Controllers;
@@ -24,7 +25,7 @@ public class HomeController : Controller
     {
         List<VillaDTO> list = new();
 
-        var response = await _villaService.GetAllAsync<APIResponse>();
+        var response = await _villaService.GetAllAsync<APIResponse>(HttpContext.Session.GetString(SD.SessionToken));
         if (response != null && response.IsSuccess)
         {
             list = JsonConvert.DeserializeObject<List<VillaDTO>>(Convert.ToString(response.Result));
