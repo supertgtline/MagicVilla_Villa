@@ -14,7 +14,6 @@ public class AuthService : BaseService, IAuthService
     {
         _clientFactory = clientFactory;
         villaUrl = configuration.GetValue<string>("ServiceUrls:VillaAPI");
-
     }
 
     public Task<T> LoginAsync<T>(LoginRequestDTO obj)
@@ -23,7 +22,7 @@ public class AuthService : BaseService, IAuthService
         {
             ApiType = SD.ApiType.POST,
             Data = obj,
-            Url = villaUrl + "/api/UsersAuth/login"
+            Url = villaUrl + "/api/v1/UsersAuth/login"
         });
     }
 
@@ -33,7 +32,7 @@ public class AuthService : BaseService, IAuthService
         {
             ApiType = SD.ApiType.POST,
             Data = obj,
-            Url = villaUrl + "/api/UsersAuth/register"
+            Url = villaUrl + "/api/v1/UsersAuth/register"
         });
     }
 }
