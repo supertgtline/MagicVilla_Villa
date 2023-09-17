@@ -33,6 +33,11 @@ namespace MagicVilla_VillaAPI.Controllers
             this._response = new();
             _dbVilla = villaRepository;
         }
+        [HttpGet("GetString")]
+        public IEnumerable<string> Get()
+        {
+            return new string[] { "String1", "string2" };
+        }
 
         [HttpGet]
         [MapToApiVersion("1.0")]

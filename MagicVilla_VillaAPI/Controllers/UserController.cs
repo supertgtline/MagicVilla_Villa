@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace MagicVilla_VillaAPI.Controllers
 {
     [Route("api/v{version:apiVersion}/UsersAuth")]
-    [ApiVersion("1.0")]
+    [ApiVersionNeutral]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -19,24 +19,26 @@ namespace MagicVilla_VillaAPI.Controllers
             _userRepo = userRepo;
             this._response = new();
         }
+
         // POST: api/User
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequestDTO model)
         {
-            var loginResponse = await _userRepo.Login(model); 
-            if(loginResponse.User==null || string.IsNullOrEmpty(loginResponse.Token))
+            var loginResponse = await _userRepo.Login(model);
+            if (loginResponse.User == null || string.IsNullOrEmpty(loginResponse.Token))
             {
                 _response.StatusCode = HttpStatusCode.BadRequest;
                 _response.IsSuccess = false;
                 _response.ErrorMessages.Add("Username or password is incorrect");
                 return BadRequest(_response);
             }
+
             _response.StatusCode = HttpStatusCode.OK;
             _response.IsSuccess = true;
             _response.Result = loginResponse;
             return Ok(_response);
+        }
 
-        }        
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterationRequestDTO model)
         {
@@ -57,6 +59,7 @@ namespace MagicVilla_VillaAPI.Controllers
                 _response.ErrorMessages.Add("Error while registering");
                 return BadRequest(_response);
             }
+
             _response.StatusCode = HttpStatusCode.OK;
             _response.IsSuccess = true;
             return Ok(_response);
