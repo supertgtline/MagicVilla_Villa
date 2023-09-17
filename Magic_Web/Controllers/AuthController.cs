@@ -1,8 +1,10 @@
+using System.Security.Claims;
 using Magic_Web.Models;
 using Magic_Web.Models.Dto;
 using Magic_Web.Services.IServices;
 using MagicVilla_Utility;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -33,6 +35,12 @@ namespace Magic_Web.Controllers
                 LoginResponseDTO model =
                     JsonConvert.DeserializeObject<LoginResponseDTO>(Convert.ToString(response.Result));
                 HttpContext.Session.SetString(SD.SessionToken,model.Token);
+                var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
+                identity.AddClaim(new Claim(ClaimTypes.Name, model.User.UserName));
+                identity.AddClaim(new Claim(ClaimTypes.Role, model.User.Role));
+                var principal = new ClaimsPrincipal(identity);
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+
             }
             return View();
         }
