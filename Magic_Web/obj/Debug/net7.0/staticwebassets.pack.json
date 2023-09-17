@@ -5,12 +5,48 @@
       "PackagePath": "staticwebassets/Magic_Web.bundle.scp.css"
     },
     {
+      "Id": "/Users/giangthao/Desktop/WorkSpace/C#/API Course - FPT udemy/self_learn/MagicVilla/Magic_Web/wwwroot/css/bootstrap.css",
+      "PackagePath": "staticwebassets/css/bootstrap.css"
+    },
+    {
       "Id": "/Users/giangthao/Desktop/WorkSpace/C#/API Course - FPT udemy/self_learn/MagicVilla/Magic_Web/wwwroot/css/site.css",
       "PackagePath": "staticwebassets/css/site.css"
     },
     {
       "Id": "/Users/giangthao/Desktop/WorkSpace/C#/API Course - FPT udemy/self_learn/MagicVilla/Magic_Web/wwwroot/favicon.ico",
       "PackagePath": "staticwebassets/favicon.ico"
+    },
+    {
+      "Id": "/Users/giangthao/Desktop/WorkSpace/C#/API Course - FPT udemy/self_learn/MagicVilla/Magic_Web/wwwroot/images/home/confirmation.jpg",
+      "PackagePath": "staticwebassets/images/home/confirmation.jpg"
+    },
+    {
+      "Id": "/Users/giangthao/Desktop/WorkSpace/C#/API Course - FPT udemy/self_learn/MagicVilla/Magic_Web/wwwroot/images/home/slide1.jpg",
+      "PackagePath": "staticwebassets/images/home/slide1.jpg"
+    },
+    {
+      "Id": "/Users/giangthao/Desktop/WorkSpace/C#/API Course - FPT udemy/self_learn/MagicVilla/Magic_Web/wwwroot/images/home/slide2.jpg",
+      "PackagePath": "staticwebassets/images/home/slide2.jpg"
+    },
+    {
+      "Id": "/Users/giangthao/Desktop/WorkSpace/C#/API Course - FPT udemy/self_learn/MagicVilla/Magic_Web/wwwroot/images/villa/villa1.jpg",
+      "PackagePath": "staticwebassets/images/villa/villa1.jpg"
+    },
+    {
+      "Id": "/Users/giangthao/Desktop/WorkSpace/C#/API Course - FPT udemy/self_learn/MagicVilla/Magic_Web/wwwroot/images/villa/villa2.jpg",
+      "PackagePath": "staticwebassets/images/villa/villa2.jpg"
+    },
+    {
+      "Id": "/Users/giangthao/Desktop/WorkSpace/C#/API Course - FPT udemy/self_learn/MagicVilla/Magic_Web/wwwroot/images/villa/villa3.jpg",
+      "PackagePath": "staticwebassets/images/villa/villa3.jpg"
+    },
+    {
+      "Id": "/Users/giangthao/Desktop/WorkSpace/C#/API Course - FPT udemy/self_learn/MagicVilla/Magic_Web/wwwroot/images/villa/villa4.jpg",
+      "PackagePath": "staticwebassets/images/villa/villa4.jpg"
+    },
+    {
+      "Id": "/Users/giangthao/Desktop/WorkSpace/C#/API Course - FPT udemy/self_learn/MagicVilla/Magic_Web/wwwroot/images/villa/villa5.jpg",
+      "PackagePath": "staticwebassets/images/villa/villa5.jpg"
     },
     {
       "Id": "/Users/giangthao/Desktop/WorkSpace/C#/API Course - FPT udemy/self_learn/MagicVilla/Magic_Web/wwwroot/js/site.js",

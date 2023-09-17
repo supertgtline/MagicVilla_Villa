@@ -13,7 +13,6 @@ namespace MagicVilla_VillaAPI.Controllers
     [Route("api/v{version:apiVersion}/VillaNumberAPI")]
     [ApiController]
     [ApiVersion("1.0")]
-    [ApiVersion("2.0")]
     public class VillaNumberApiController : ControllerBase
     {
         private readonly IMapper _mapper;
@@ -59,13 +58,7 @@ namespace MagicVilla_VillaAPI.Controllers
 
             //return Ok(await _db.Villas.ToListAsync());
         }
-
-        [MapToApiVersion("2.0")]
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        
 
         // When user input id here so the GetVilla will be required id
         [HttpGet("{id:int}", Name = "GetVillaNumber")]
