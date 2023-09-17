@@ -55,10 +55,13 @@ builder.Services.AddApiVersioning(options =>
 {
     options.AssumeDefaultVersionWhenUnspecified = true;
     options.DefaultApiVersion = new ApiVersion(1, 0);
+    options.ReportApiVersions = true;
 });
 builder.Services.AddVersionedApiExplorer(options =>
 {
     options.GroupNameFormat = "'v'VVV";
+    options.SubstituteApiVersionInUrl = true;
+    
 });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -91,6 +94,23 @@ builder.Services.AddSwaggerGen(options =>
             new List<string>()
         }
     });
+    options.SwaggerDoc("v1" ,new OpenApiInfo
+    {
+        Version = "v1.0",
+        Title = "Magic Villa",
+        Description = "API to manage Villa",
+        TermsOfService = new Uri("https://example.com/tearms"),
+        Contact = new OpenApiContact()
+        {
+            Name = "Felix Truong",
+            Url = new Uri("https://dotnetmastery.com")
+        },
+        License = new OpenApiLicense()
+        {
+            Name = "Example License",
+            Url = new Uri("https://example.com/licence")
+        }
+    });
 });
 builder.Services.AddSingleton<ILogging, LoggingV2>();
 
@@ -100,7 +120,10 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/swagger/v1/swagger.json","Magic_VillaV1");
+    });
 }
 
 app.UseHttpsRedirection();
