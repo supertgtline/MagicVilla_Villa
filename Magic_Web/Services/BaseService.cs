@@ -18,6 +18,7 @@ public class BaseService : IBaseService
         this.responseModel = new();
         this.HttpClientFactory = httpClientFactory;
     }
+
     public async Task<T> SendAsync<T>(APIRequest apiRequest)
     {
         try
@@ -48,18 +49,20 @@ public class BaseService : IBaseService
                     break;
             }
 
-            HttpResponseMessage apiResonse = null;
+            HttpResponseMessage apiResponse = null;
             if (!string.IsNullOrEmpty(apiRequest.Token))
             {
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiRequest.Token);
             }
-            apiResonse = await client.SendAsync(message);
-            var apiContent = await apiResonse.Content.ReadAsStringAsync();
+
+            apiResponse = await client.SendAsync(message);
+            var apiContent = await apiResponse.Content.ReadAsStringAsync();
             try
             {
                 APIResponse ApiResponse = JsonConvert.DeserializeObject<APIResponse>(apiContent);
-                if (apiResonse.StatusCode == HttpStatusCode.BadRequest
-                    || apiResonse.StatusCode == HttpStatusCode.NotFound)
+                if( ApiResponse!=null &&( apiResponse.StatusCode==System.Net.HttpStatusCode.BadRequest 
+                                          || apiResponse.StatusCode == System.Net.HttpStatusCode.NotFound))
+
                 {
                     ApiResponse.StatusCode = HttpStatusCode.BadRequest;
                     ApiResponse.IsSuccess = false;
