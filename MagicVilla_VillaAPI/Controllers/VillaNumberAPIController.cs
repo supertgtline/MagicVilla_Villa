@@ -10,9 +10,10 @@ using Microsoft.EntityFrameworkCore;
 namespace MagicVilla_VillaAPI.Controllers
 
 {
-    [Route("api/VillaNumberAPI")]
+    [Route("api/v{version:apiVersion}/VillaNumberAPI")]
     [ApiController]
     [ApiVersion("1.0")]
+    [ApiVersion("2.0")]
     public class VillaNumberApiController : ControllerBase
     {
         private readonly IMapper _mapper;
@@ -35,6 +36,7 @@ namespace MagicVilla_VillaAPI.Controllers
         }
 
         [HttpGet]
+        [MapToApiVersion("1.0")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<APIResponse>> GetVillaNumbers()
         {
@@ -56,6 +58,13 @@ namespace MagicVilla_VillaAPI.Controllers
             // _logger.Log("Getting all villas","");
 
             //return Ok(await _db.Villas.ToListAsync());
+        }
+
+        [MapToApiVersion("2.0")]
+        [HttpGet]
+        public IEnumerable<string> Get()
+        {
+            return new string[] { "value1", "value2" };
         }
 
         // When user input id here so the GetVilla will be required id
