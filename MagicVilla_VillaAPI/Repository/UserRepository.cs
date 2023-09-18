@@ -76,7 +76,7 @@ public class UserRepository : IUserRepository
         {
             Token = tokenHandler.WriteToken(token),
             User = _mapper.Map<UserDTO>(user),
-            Role = roles.FirstOrDefault()
+            // Role = roles.FirstOrDefault()
         };
         return loginResponseDto;
     }
