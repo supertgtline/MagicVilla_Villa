@@ -36,7 +36,9 @@ namespace MagicVilla_VillaAPI.Controllers
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<APIResponse>> GetVillas([FromQuery(Name = "filterOccupancy")]int? occupancy)
+        public async Task<ActionResult<APIResponse>> GetVillas(
+            [FromQuery(Name = "filterOccupancy")] int? occupancy,
+            [FromQuery] string? search)
         {
             try
             {
@@ -46,10 +48,17 @@ namespace MagicVilla_VillaAPI.Controllers
                 {
                     villaList = await _dbVilla.GetAllAsync(u => u.Occupancy == occupancy);
                 }
+
+                if (!string.IsNullOrEmpty(search))
+                {
+                    villaList = villaList.Where(u =>
+                        u.Name.ToLower().Contains(search));
+                }
                 else
                 {
                     villaList = await _dbVilla.GetAllAsync();
                 }
+
                 _response.Result = _mapper.Map<List<VillaDTO>>(villaList);
                 _response.StatusCode = System.Net.HttpStatusCode.OK;
                 return Ok(_response);
@@ -87,6 +96,7 @@ namespace MagicVilla_VillaAPI.Controllers
                     _response.StatusCode = HttpStatusCode.BadRequest;
                     return BadRequest(_response);
                 }
+
                 var villa = await _dbVilla.GetAsync(u => u.Id == id);
                 if (villa == null)
                 {
@@ -103,7 +113,7 @@ namespace MagicVilla_VillaAPI.Controllers
                 _response.ErrorMessages =
                     new List<string>() { ex.ToString() };
             }
-            
+
             return _response;
         }
 
@@ -158,6 +168,7 @@ namespace MagicVilla_VillaAPI.Controllers
                 _response.ErrorMessages =
                     new List<string>() { ex.ToString() };
             }
+
             /*if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -184,6 +195,7 @@ namespace MagicVilla_VillaAPI.Controllers
                 {
                     return NotFound();
                 }
+
                 await _dbVilla.RemoveAsync(villa);
                 _response.StatusCode = HttpStatusCode.NoContent;
                 _response.IsSuccess = true;
@@ -195,12 +207,12 @@ namespace MagicVilla_VillaAPI.Controllers
                 _response.ErrorMessages =
                     new List<string>() { ex.ToString() };
             }
+
             /*if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }*/
             return _response;
-            
         }
 
         [HttpPut("{id:int}", Name = "UpdateVilla")]
@@ -242,12 +254,12 @@ namespace MagicVilla_VillaAPI.Controllers
                 _response.ErrorMessages =
                     new List<string>() { ex.ToString() };
             }
+
             /*if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }*/
             return _response;
-            
         }
 
         [HttpPatch("{id:int}", Name = "UpdatePartialVilla")]
@@ -258,13 +270,13 @@ namespace MagicVilla_VillaAPI.Controllers
         {
             try
             {
-
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 throw;
             }
+
             if (patchVillaDto == null || id == 0)
             {
                 return BadRequest();
