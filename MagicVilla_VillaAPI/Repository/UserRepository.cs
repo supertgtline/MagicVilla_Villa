@@ -28,7 +28,7 @@ public class UserRepository : IUserRepository
         secretKey = configuration.GetValue<string>("ApiSettings:Secret");
         mapper = mapper;
     }
-    
+
     public bool IsUniqueUser(string username)
     {
         var user = _db.ApplicationUsers.FirstOrDefault(x => x.UserName == username);
@@ -43,7 +43,7 @@ public class UserRepository : IUserRepository
     public async Task<LoginResponseDTO> Login(LoginRequestDTO loginRequestDto)
     {
         var user = _db.ApplicationUsers.FirstOrDefault
-        (u => u.UserName.ToLower() == loginRequestDto.UserName.ToLower());
+            (u => u.UserName.ToLower() == loginRequestDto.UserName.ToLower());
         bool isValid = await _userManager.CheckPasswordAsync(user, loginRequestDto.Password);
         if (user == null || isValid == false)
         {
@@ -53,6 +53,7 @@ public class UserRepository : IUserRepository
                 User = null
             };
         }
+
         // if user was found generate JWT Token
         var roles = await _userManager.GetRolesAsync(user);
         var tokenHandler = new JwtSecurityTokenHandler();
@@ -77,18 +78,33 @@ public class UserRepository : IUserRepository
         return loginResponseDto;
     }
 
-    public async Task<LocalUser> Register(RegisterationRequestDTO registerationRequestDto)
+    public async Task<UserDTO> Register(RegisterationRequestDTO registerationRequestDTO)
     {
-        LocalUser user = new LocalUser()
+        ApplicationUser user = new()
         {
-            UserName = registerationRequestDto.UserName,
-            Password = registerationRequestDto.Password,
-            Name = registerationRequestDto.Name,
-            Role = registerationRequestDto.Role
+            UserName = registerationRequestDTO.UserName,
+            Email = registerationRequestDTO.UserName,
+            NormalizedEmail = registerationRequestDTO.UserName.ToUpper(),
+            Name = registerationRequestDTO.Name
         };
-        _db.LocalUsers.Add(user);
-        await _db.SaveChangesAsync();
-        user.Password = "";
-        return user;
+        try
+        {
+            var result = await _userManager.CreateAsync(user, registerationRequestDTO.Password);
+            if (result.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(user, "admin");
+                var userToReturn = _db.ApplicationUsers
+                    .FirstOrDefault(u => u.UserName == registerationRequestDTO.UserName);
+                return _mapper.Map<UserDTO>(userToReturn);
+
+            }
+        }
+        catch(Exception e)
+        {
+
+        }
+
+        return new UserDTO();
+
     }
 }
