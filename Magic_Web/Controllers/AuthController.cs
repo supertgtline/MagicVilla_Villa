@@ -35,8 +35,8 @@ namespace Magic_Web.Controllers
             APIResponse response = await _authService.LoginAsync<APIResponse>(obj);
             if (response != null && response.IsSuccess)
             {
-                LoginResponseDTO model =
-                    JsonConvert.DeserializeObject<LoginResponseDTO>(Convert.ToString(response.Result));
+                var model =
+                    JsonConvert.DeserializeObject<LoginResponseDTO>(Convert.ToString(response.Result) ?? throw new InvalidOperationException());
                 var handler = new JwtSecurityTokenHandler();
                 var jwt = handler.ReadJwtToken(model.Token);
                 HttpContext.Session.SetString(SD.SessionToken,model.Token);
@@ -73,11 +73,21 @@ namespace Magic_Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegistrationRequestDTO obj)
         {
+            if (string.IsNullOrEmpty(obj.Role))
+            {
+                obj.Role = SD.Customer;
+            }
             APIResponse result =  await _authService.RegisterAsync<APIResponse>(obj);
             if (result != null && result.IsSuccess)
             {
                 return RedirectToAction("Login");
             }
+
+            var roleList = new List<SelectListItem>()
+            {
+                new SelectListItem { Text = SD.Admin, Value = SD.Admin },
+                new SelectListItem { Text = SD.Customer, Value = SD.Customer },
+            };
             return View();
         }
 
