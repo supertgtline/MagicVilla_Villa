@@ -29,7 +29,14 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Content Management
+                            @if (User.IsInRole(SD.Admin))
+                            {
+                                <span>Content Management (Admin)</span>
+                            }
+                            else
+                            {
+                                <span>Villa & Villa Numbers</span>
+                            }
                         </a>
                         <ul class="dropdown-menu">
                             <li>
@@ -42,9 +49,11 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav">
-                    @if (httpAcc.HttpContext.Session.GetString(SD.SessionToken) != null &&
-                         httpAcc.HttpContext.Session.GetString(SD.SessionToken).ToString().Length > 0)
+                    @if (User.Identity.IsAuthenticated)
                     {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="#">Hello, @User.Identity.Name</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Auth" asp-action="Logout">Logout</a>
                         </li>
