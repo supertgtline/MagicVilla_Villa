@@ -132,6 +132,9 @@ namespace MagicVilla_VillaAPI.Migrations
                     b.Property<string>("Details")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ImageLocalPath")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
