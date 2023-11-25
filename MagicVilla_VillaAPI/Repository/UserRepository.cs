@@ -43,17 +43,17 @@ public class UserRepository : IUserRepository
         return false;
     }
 
-    public async Task<LoginResponseDTO> Login(LoginRequestDTO loginRequestDto)
+    public async Task<TokenDTO> Login(LoginRequestDTO loginRequestDto)
     {
         var user = _db.ApplicationUsers.FirstOrDefault
             (u => u.UserName.ToLower() == loginRequestDto.UserName.ToLower());
         bool isValid = await _userManager.CheckPasswordAsync(user, loginRequestDto.Password);
         if (user == null || isValid == false)
         {
-            return new LoginResponseDTO()
+            return new TokenDTO()
             {
-                Token = "",
-                User = null
+                Token = ""
+                
             };
         }
 
@@ -72,13 +72,11 @@ public class UserRepository : IUserRepository
             SigningCredentials = new(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
         };
         var token = tokenHandler.CreateToken(tokenDescriptor);
-        LoginResponseDTO loginResponseDto = new LoginResponseDTO()
+        TokenDTO tokenDto = new TokenDTO()
         {
-            Token = tokenHandler.WriteToken(token),
-            User = _mapper.Map<UserDTO>(user),
-            // Role = roles.FirstOrDefault()
+            Token = tokenHandler.WriteToken(token)// Role = roles.FirstOrDefault()
         };
-        return loginResponseDto;
+        return tokenDto;
     }
 
     public async Task<UserDTO> Register(RegisterationRequestDTO registerationRequestDTO)
