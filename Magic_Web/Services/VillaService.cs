@@ -45,7 +45,8 @@ public class VillaService : BaseService,IVillaService
             ApiType = SD.ApiType.POST,
             Data = dto,
             Url = villaUrl + $"/api/{SD.CurrentAPIVersion}/villaAPI",
-            Token = token
+            Token = token,
+            ContentType = SD.ContentType.MultipartFormData
         });
     }
 
@@ -56,7 +57,8 @@ public class VillaService : BaseService,IVillaService
             ApiType = SD.ApiType.PUT,
             Data = dto,
             Url = villaUrl + $"/api/{SD.CurrentAPIVersion}/villaAPI/"+dto.Id,
-            Token = token
+            Token = token,
+            ContentType = SD.ContentType.MultipartFormData
         });
     }
 

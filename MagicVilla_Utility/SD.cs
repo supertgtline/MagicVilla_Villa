@@ -13,4 +13,9 @@ public static class SD
     public static string CurrentAPIVersion = "v2";
     public static string Admin = "admin";
     public static string Customer = "customer";
+    public enum ContentType
+    {
+        Json,
+        MultipartFormData
+    }
 }
