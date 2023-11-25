@@ -47,3 +47,11 @@ Magic_Web/obj/rider.project.model.nuget.info
 Magic_Web/bin/*.*
 *.info
 Magic_Web/obj/rider.project.model.nuget.info
+MagicVilla_Utility/obj/project.assets.json
+MagicVilla_Utility/obj/MagicVilla_Utility.csproj.nuget.dgspec.json
+MagicVilla_Utility/obj/Debug/net7.0/MagicVilla_Utility.GeneratedMSBuildEditorConfig.editorconfig
+MagicVilla_Utility/obj/Debug/net7.0/MagicVilla_Utility.csproj.FileListAbsolute.txt
+MagicVilla_Utility/obj/MagicVilla_Utility.csproj.nuget.g.targets
+MagicVilla_Utility/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs
+MagicVilla_Utility/obj/Debug/net7.0/MagicVilla_Utility.AssemblyInfo.cs
+MagicVilla_Utility/obj/project.packagespec.json
