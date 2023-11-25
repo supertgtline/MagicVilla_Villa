@@ -12,11 +12,13 @@ public class BaseService : IBaseService
 {
     public APIResponse responseModel { get; set; }
     public IHttpClientFactory HttpClientFactory { get; set; }
+    private readonly ITokenProvider _tokenProvider;
 
-    public BaseService(IHttpClientFactory httpClientFactory)
+    public BaseService(IHttpClientFactory httpClientFactory, TokenProvider tokenProvider)
     {
-        this.responseModel = new();
-        this.HttpClientFactory = httpClientFactory;
+        responseModel = new();
+        HttpClientFactory = httpClientFactory;
+        _tokenProvider = tokenProvider;
     }
 
     public async Task<T> SendAsync<T>(APIRequest apiRequest)
@@ -34,6 +36,11 @@ public class BaseService : IBaseService
                 message.Headers.Add("Accept", "application/json");
             }
             message.RequestUri = new Uri(apiRequest.Url);
+            if (_tokenProvider.GetToken() != null)
+            {
+                var token = _tokenProvider.GetToken();
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token.AccessToken);
+            }
             if (apiRequest.ContentType == SD.ContentType.MultipartFormData)
             {
                 var content = new MultipartFormDataContent();
