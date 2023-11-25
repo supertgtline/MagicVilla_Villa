@@ -127,7 +127,7 @@ namespace MagicVilla_VillaAPI.Controllers.v2
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<APIResponse>> CreateVilla([FromBody] VillaCreateDTO createDto)
+        public async Task<ActionResult<APIResponse>> CreateVilla([FromForm] VillaCreateDTO createDto)
         {
             try
             {
@@ -141,28 +141,34 @@ namespace MagicVilla_VillaAPI.Controllers.v2
                 {
                     return BadRequest(createDto);
                 }
-
-                /*
-                if (villaDto.Id > 0)
-                {
-                    return StatusCode(StatusCodes.Status500InternalServerError);
-                }
-                */
                 Villa villa = _mapper.Map<Villa>(createDto);
-
-                /*Villa model = new()
-                {
-                    Amenity = createDto.Amenity,
-                    Details = createDto.Details,
-                    ImageUrl = createDto.ImageUrl,
-                    Name = createDto.Name,
-                    Occupancy = createDto.Occupancy,
-                    Rate = createDto.Rate,
-                    Sqft = createDto.Sqft
-                };*/
                 await _dbVilla.CreateAsync(villa);
+                if (createDto.Image != null)
+                {
+                    string fileName = villa.Id + Path.GetExtension(createDto.Image.FileName);
+                    string filePah = @"wwwroot\ProductImage\" + fileName;
+                    var directoryLocation = Path.Combine(Directory.GetCurrentDirectory(), filePah);
+                    FileInfo file = new FileInfo(directoryLocation);
+                    if (file.Exists)
+                    {
+                        file.Delete();
+                    }
+                    using (var fileStream =  new FileStream(directoryLocation,FileMode.Create))
+                    {
+                        createDto.Image.CopyTo(fileStream);
+                    }
+
+                    var baseUrl =
+                        $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.Value}{HttpContext.Request.PathBase.Value}";
+                    villa.ImageUrl = baseUrl + "/ProductImage/" + fileName;
+                    villa.ImageLocalPath = filePah;
+                }
+                else
+                {
+                    villa.ImageUrl = "https://placehold.co/600x400";
+                }
                 _response.Result = _mapper.Map<VillaDTO>(villa);
-                _response.StatusCode = System.Net.HttpStatusCode.Created;
+                _response.StatusCode = HttpStatusCode.Created;
                 return CreatedAtRoute("GetVilla", new { id = villa.Id }, _response);
             }
             catch (Exception ex)
@@ -171,11 +177,6 @@ namespace MagicVilla_VillaAPI.Controllers.v2
                 _response.ErrorMessages =
                     new List<string>() { ex.ToString() };
             }
-
-            /*if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }*/
             return _response;
         }
 

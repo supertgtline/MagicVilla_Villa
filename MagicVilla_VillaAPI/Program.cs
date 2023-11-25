@@ -44,10 +44,11 @@ builder.Services.AddAuthentication(x =>
 builder.Services.AddControllers(option =>
 {
     //option.ReturnHttpNotAcceptable = true;
-    option.CacheProfiles.Add("Default30", new CacheProfile()
-    {
-        Duration = 30
-    });
+    //option.CacheProfiles.Add("Default30", new CacheProfile()
+    //{
+      //  Duration = 30
+    //});
+    
 }).AddNewtonsoftJson().AddXmlSerializerFormatters();
 builder.Services.AddDbContext<ApplicationDbContext>(option =>
 {
