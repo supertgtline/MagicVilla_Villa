@@ -1,9 +1,9 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Magic_Web.Models;
-using Magic_Web.Models.Dto;
 using Magic_Web.Services.IServices;
 using MagicVilla_Utility;
+using Magic_Web.Models.Dto;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
@@ -15,9 +15,13 @@ namespace Magic_Web.Controllers
     public class AuthController : Controller
     {
         private readonly IAuthService _authService;
-        public AuthController(IAuthService authService)
+        private readonly ITokenProvider _tokenProvider;
+
+        public AuthController(IAuthService authService,
+            ITokenProvider tokenProvider)
         {
             _authService = authService;
+            _tokenProvider = tokenProvider;
         }
 
         [HttpGet]
@@ -35,24 +39,25 @@ namespace Magic_Web.Controllers
             if (response != null && response.IsSuccess)
             {
                 var model =
-                    JsonConvert.DeserializeObject<TokenDTO>(Convert.ToString(response.Result) ?? throw new InvalidOperationException());
+                    JsonConvert.DeserializeObject<TokenDTO>(Convert.ToString(response.Result) ??
+                                                            throw new InvalidOperationException());
                 var handler = new JwtSecurityTokenHandler();
                 var jwt = handler.ReadJwtToken(model.AccessToken);
-                HttpContext.Session.SetString(SD.AccessToken,model.AccessToken);
+                HttpContext.Session.SetString(SD.AccessToken, model.AccessToken);
                 var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
                 identity.AddClaim(new Claim(ClaimTypes.Name, jwt.Claims.FirstOrDefault(u => u.Type == "name").Value));
-                identity.AddClaim(new Claim(ClaimTypes.Role, jwt.Claims.FirstOrDefault(u=>u.Type=="role").Value));
+                identity.AddClaim(new Claim(ClaimTypes.Role, jwt.Claims.FirstOrDefault(u => u.Type == "role").Value));
                 var principal = new ClaimsPrincipal(identity);
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-                HttpContext.Session.SetString(SD.AccessToken,model.AccessToken);
-                return RedirectToAction("Index","Home");
+
+                _tokenProvider.SetToken(model);
+                return RedirectToAction("Index", "Home");
             }
             else
             {
-                ModelState.AddModelError("CustomError",response.ErrorMessages.FirstOrDefault());
+                ModelState.AddModelError("CustomError", response.ErrorMessages.FirstOrDefault());
                 return View(obj);
             }
-            
         }
 
         [HttpGet]
@@ -76,7 +81,8 @@ namespace Magic_Web.Controllers
             {
                 obj.Role = SD.Customer;
             }
-            APIResponse result =  await _authService.RegisterAsync<APIResponse>(obj);
+
+            APIResponse result = await _authService.RegisterAsync<APIResponse>(obj);
             if (result != null && result.IsSuccess)
             {
                 return RedirectToAction("Login");
@@ -94,7 +100,7 @@ namespace Magic_Web.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
-            HttpContext.Session.SetString(SD.AccessToken,"");
+            _tokenProvider.ClearToken();
             return RedirectToAction("Index", "Home");
         }
 
@@ -103,5 +109,4 @@ namespace Magic_Web.Controllers
             return View();
         }
     }
-
 }

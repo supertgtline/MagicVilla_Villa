@@ -1,4 +1,4 @@
-using MagicVilla_VillaAPI.Models.Dto;
+using Magic_Web.Models.Dto;
 
 namespace Magic_Web.Services.IServices;
 

@@ -1,6 +1,6 @@
 using Magic_Web.Services.IServices;
 using MagicVilla_Utility;
-using MagicVilla_VillaAPI.Models.Dto;
+using Magic_Web.Models.Dto;
 
 namespace Magic_Web.Services;
 
@@ -14,7 +14,7 @@ public class TokenProvider : ITokenProvider
     public void SetToken(TokenDTO tokenDTO)
     {
         var cookieOptions = new CookieOptions { Expires = DateTime.UtcNow.AddDays(60) };
-        _httpContextAccessor.HttpContext?.Response.Cookies.Append(SD.AccessToken,tokenDTO.Token, cookieOptions);
+        _httpContextAccessor.HttpContext?.Response.Cookies.Append(SD.AccessToken,tokenDTO.AccessToken, cookieOptions);
     }
 
     public TokenDTO GetToken()
@@ -25,7 +25,7 @@ public class TokenProvider : ITokenProvider
                 _httpContextAccessor.HttpContext.Request.Cookies.TryGetValue(SD.AccessToken, out string accessToken);
             TokenDTO tokenDTO = new()
             {
-                Token = accessToken
+                AccessToken = accessToken
             };
             return hasAccessToken ? tokenDTO : null;
         }
