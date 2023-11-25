@@ -1,5 +1,4 @@
 using System.IdentityModel.Tokens.Jwt;
-using System.Net.Mime;
 using System.Security.Claims;
 using Magic_Web.Models;
 using Magic_Web.Models.Dto;
@@ -36,16 +35,16 @@ namespace Magic_Web.Controllers
             if (response != null && response.IsSuccess)
             {
                 var model =
-                    JsonConvert.DeserializeObject<LoginResponseDTO>(Convert.ToString(response.Result) ?? throw new InvalidOperationException());
+                    JsonConvert.DeserializeObject<TokenDTO>(Convert.ToString(response.Result) ?? throw new InvalidOperationException());
                 var handler = new JwtSecurityTokenHandler();
-                var jwt = handler.ReadJwtToken(model.Token);
-                HttpContext.Session.SetString(SD.AccessToken,model.Token);
+                var jwt = handler.ReadJwtToken(model.AccessToken);
+                HttpContext.Session.SetString(SD.AccessToken,model.AccessToken);
                 var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
-                identity.AddClaim(new Claim(ClaimTypes.Name, model.User.UserName));
-                identity.AddClaim(new Claim(ClaimTypes.Role, jwt.Claims.FirstOrDefault(u=>u.Type == "role").Value));
+                identity.AddClaim(new Claim(ClaimTypes.Name, jwt.Claims.FirstOrDefault(u => u.Type == "name").Value));
+                identity.AddClaim(new Claim(ClaimTypes.Role, jwt.Claims.FirstOrDefault(u=>u.Type=="role").Value));
                 var principal = new ClaimsPrincipal(identity);
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-                HttpContext.Session.SetString(SD.AccessToken,model.Token);
+                HttpContext.Session.SetString(SD.AccessToken,model.AccessToken);
                 return RedirectToAction("Index","Home");
             }
             else
