@@ -14,14 +14,14 @@ public class BaseService : IBaseService
     public IHttpClientFactory HttpClientFactory { get; set; }
     private readonly ITokenProvider _tokenProvider;
 
-    public BaseService(IHttpClientFactory httpClientFactory, TokenProvider tokenProvider)
+    public BaseService(IHttpClientFactory httpClientFactory, ITokenProvider tokenProvider)
     {
         responseModel = new();
         HttpClientFactory = httpClientFactory;
         _tokenProvider = tokenProvider;
     }
 
-    public async Task<T> SendAsync<T>(APIRequest apiRequest)
+    public async Task<T> SendAsync<T>(APIRequest apiRequest, bool withBearer = true)
     {
         try
         {
@@ -36,7 +36,7 @@ public class BaseService : IBaseService
                 message.Headers.Add("Accept", "application/json");
             }
             message.RequestUri = new Uri(apiRequest.Url);
-            if (_tokenProvider.GetToken() != null)
+            if (withBearer && _tokenProvider.GetToken() != null)
             {
                 var token = _tokenProvider.GetToken();
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token.AccessToken);

@@ -12,8 +12,7 @@ public class AuthService : IAuthService
     private readonly IBaseService _baseService;
 
     public AuthService(IHttpClientFactory clientFactory, IConfiguration configuration, IBaseService baseService)
-    {
-        _clientFactory = clientFactory;
+    {        _clientFactory = clientFactory;
         villaUrl = configuration.GetValue<string>("ServiceUrls:VillaAPI");
         _baseService = baseService;
     }
@@ -25,7 +24,7 @@ public class AuthService : IAuthService
             ApiType = SD.ApiType.POST,
             Data = obj,
             Url = villaUrl + $"/api/{SD.CurrentAPIVersion}/UsersAuth/login"
-        });
+        }, withBearer:false);
     }
 
     public async Task<T> RegisterAsync<T>(RegistrationRequestDTO obj)
@@ -35,6 +34,6 @@ public class AuthService : IAuthService
             ApiType = SD.ApiType.POST,
             Data = obj,
             Url = villaUrl + "/api/v1/UsersAuth/register"
-        });
+        }, withBearer: false);
     }
 }
