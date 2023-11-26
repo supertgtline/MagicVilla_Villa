@@ -1,6 +1,6 @@
 namespace Magic_Web.Models.Dto;
 
-public class RegistrationRequestDTO
+public class RegisterationRequestDTO
 {
     public string UserName { get; set; }
     public string Name { get; set; }

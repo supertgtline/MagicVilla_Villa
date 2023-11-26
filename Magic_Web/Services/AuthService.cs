@@ -27,7 +27,7 @@ public class AuthService : IAuthService
         }, withBearer:false);
     }
 
-    public async Task<T> RegisterAsync<T>(RegistrationRequestDTO obj)
+    public async Task<T> RegisterAsync<T>(RegisterationRequestDTO obj)
     {
         return await _baseService.SendAsync<T>(new APIRequest()
         {

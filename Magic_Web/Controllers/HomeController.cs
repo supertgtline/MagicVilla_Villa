@@ -1,18 +1,14 @@
-﻿using System.Diagnostics;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Magic_Web.Models;
 using Magic_Web.Models.Dto;
 using Magic_Web.Services.IServices;
-using MagicVilla_Utility;
 using Newtonsoft.Json;
 
 namespace Magic_Web.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
-
     private readonly IVillaService _villaService;
     private readonly IMapper _mapper;
     public HomeController(IVillaService villaService, IMapper mapper)
@@ -32,5 +28,6 @@ public class HomeController : Controller
         }
         return View(list);
     }
+       
 }
 

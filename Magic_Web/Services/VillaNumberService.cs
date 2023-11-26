@@ -11,7 +11,7 @@ public class VillaNumberService : IVillaNumberService
     private string villaUrl;
     private readonly IBaseService _baseService;
 
-    public VillaNumberService(IHttpClientFactory httpClientFactory, IConfiguration configuration, BaseService baseService)
+    public VillaNumberService(IHttpClientFactory httpClientFactory, IConfiguration configuration, IBaseService baseService)
     {
         _clientFactory = httpClientFactory;
         villaUrl = configuration.GetValue<string>("ServiceUrls:VillaAPI");

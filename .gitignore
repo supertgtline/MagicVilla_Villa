@@ -65,3 +65,13 @@ MagicVilla_VillaAPI/.vs/MagicVilla_VillaAPI/xs/project-cache/Magic_Web-Debug.jso
 MagicVilla_VillaAPI/.vs/MagicVilla_VillaAPI/xs/project-cache/MagicVilla_Web-Debug.json
 MagicVilla_VillaAPI/.vs/MagicVilla_VillaAPI/xs/project-cache/MagicVilla_Web-Debug.json
 MagicVilla_VillaAPI/.vs/MagicVilla_VillaAPI/xs/project-cache/Magic_Web-Debug.json
+MagicVilla_Web/obj/Release/*.*
+MagicVilla_Web/obj/Release/net7.0/MagicVilla_Web.csproj.CopyComplete
+MagicVilla_Web/obj/Release/net7.0/MagicVilla_Web.AssemblyInfo.cs
+MagicVilla_Web/obj/Release/net7.0/MagicVilla_Web.GeneratedMSBuildEditorConfig.editorconfig
+MagicVilla_Utility/obj/Release/net7.0/MagicVilla_Utility.AssemblyInfo.cs
+MagicVilla_VillaAPI/bin/*.*
+MagicVilla_VillaAPI/bin/Release/net7.0/*.*
+MagicVilla_VillaAPI/bin/Release/net7.0/MagicVilla_VillaAPI/*.*
+MagicVilla_Utility/obj/Release/net7.0/*.*
+MagicVilla_Utility/obj/Debug/net7.0/*.*

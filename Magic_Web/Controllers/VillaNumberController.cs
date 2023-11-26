@@ -15,28 +15,24 @@ namespace Magic_Web.Controllers
     public class VillaNumberController : Controller
     {
         private readonly IVillaNumberService _villaNumberService;
-        private readonly IMapper _mapper;
         private readonly IVillaService _villaService;
-
-
-        public VillaNumberController(
-            IVillaNumberService villaNumberService,
-            IMapper mapper,
-            IVillaService villaService)
+        private readonly IMapper _mapper;
+        public VillaNumberController(IVillaNumberService villaNumberService, IMapper mapper, IVillaService villaService)
         {
             _villaNumberService = villaNumberService;
             _mapper = mapper;
             _villaService = villaService;
         }
+
         public async Task<IActionResult> IndexVillaNumber()
         {
             List<VillaNumberDTO> list = new();
+
             var response = await _villaNumberService.GetAllAsync<APIResponse>();
             if (response != null && response.IsSuccess)
             {
                 list = JsonConvert.DeserializeObject<List<VillaNumberDTO>>(Convert.ToString(response.Result));
-            }
-
+}
             return View(list);
         }
         [Authorize(Roles = "admin")]
@@ -52,7 +48,7 @@ namespace Magic_Web.Controllers
                         Text = i.Name,
                         Value = i.Id.ToString()
                     }); ;
-}
+            }
             return View(villaNumberVM);
         }
         [Authorize(Roles = "admin")]
@@ -72,19 +68,20 @@ namespace Magic_Web.Controllers
                 {
                     if (response.ErrorMessages.Count > 0)
                     {
-                        ModelState.AddModelError("ErrorMessage",response.ErrorMessages.FirstOrDefault());
+                        ModelState.AddModelError("ErrorMessages", response.ErrorMessages.FirstOrDefault());
                     }
                 }
             }
+
             var resp = await _villaService.GetAllAsync<APIResponse>();
             if (resp != null && resp.IsSuccess)
             {
                 model.VillaList = JsonConvert.DeserializeObject<List<VillaDTO>>
                     (Convert.ToString(resp.Result)).Select(i => new SelectListItem
-                {
-                    Text = i.Name,
-                    Value = i.Id.ToString()
-                }); ;
+                    {
+                        Text = i.Name,
+                        Value = i.Id.ToString()
+                    }); ;
             }
             return View(model);
         }
@@ -156,7 +153,7 @@ namespace Magic_Web.Controllers
             if (response != null && response.IsSuccess)
             {
                 VillaNumberDTO model = JsonConvert.DeserializeObject<VillaNumberDTO>(Convert.ToString(response.Result));
-                villaNumberVM.VillaNumber =  model;
+                villaNumberVM.VillaNumber = model;
             }
 
             response = await _villaService.GetAllAsync<APIResponse>();
@@ -164,10 +161,10 @@ namespace Magic_Web.Controllers
             {
                 villaNumberVM.VillaList = JsonConvert.DeserializeObject<List<VillaDTO>>
                     (Convert.ToString(response.Result)).Select(i => new SelectListItem
-                {
-                    Text = i.Name,
-                    Value = i.Id.ToString()
-                }); 
+                    {
+                        Text = i.Name,
+                        Value = i.Id.ToString()
+                    });
                 return View(villaNumberVM);
             }
 
@@ -188,5 +185,8 @@ namespace Magic_Web.Controllers
 
             return View(model);
         }
+
+
+
     }
 }
